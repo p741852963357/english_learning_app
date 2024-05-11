@@ -1,6 +1,6 @@
-const connect = require("mongoose");
+const connectDB = require("mongoose");
 
-connect
+connectDB
     .connect("mongodb://127.0.0.1:27017/db")
     .then(() => {
         console.log("Mongoose Connected");
@@ -9,4 +9,4 @@ connect
         console.log(err);
     });
 
-module.exports = connect;
+module.exports = connectDB;

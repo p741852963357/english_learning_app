@@ -36,7 +36,9 @@ class CreateScreen extends StatelessWidget {
                 child: CustomButton(
                   prefixIcon: Icons.folder_outlined,
                   title: 'Folder',
-                  onPressed: () {},
+                  onPressed: () {
+                    AutoRouter.of(context).push(const CreateFolderRoute());
+                  },
                 ))
           ],
         ),

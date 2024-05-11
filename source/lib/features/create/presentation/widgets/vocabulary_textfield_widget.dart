@@ -1,19 +1,19 @@
-import 'package:client/features/create/presentation/widgets/vocabulary_controller.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants/app_colors.dart';
 
 class VocabularyTextFieldWidget extends StatefulWidget {
-  final VocabularyController vocabularyController;
+  final TextEditingController termController;
+  final TextEditingController definitionController;
 
   const VocabularyTextFieldWidget({
     super.key,
-    required this.vocabularyController,
+    required this.termController,
+    required this.definitionController,
   });
 
   @override
-  State<VocabularyTextFieldWidget> createState() =>
-      _VocabularyTextFieldWidgetState();
+  State<VocabularyTextFieldWidget> createState() => _VocabularyTextFieldWidgetState();
 }
 
 class _VocabularyTextFieldWidgetState extends State<VocabularyTextFieldWidget> {
@@ -33,7 +33,9 @@ class _VocabularyTextFieldWidgetState extends State<VocabularyTextFieldWidget> {
         child: Column(
           children: [
             TextField(
-              controller: widget.vocabularyController.termController,
+              maxLines: 4,
+              minLines: 1,
+              controller: widget.termController,
               cursorColor: AppColors.black,
               decoration: const InputDecoration(
                 helperText: "Term",
@@ -46,7 +48,9 @@ class _VocabularyTextFieldWidgetState extends State<VocabularyTextFieldWidget> {
               ),
             ),
             TextField(
-              controller: widget.vocabularyController.definitionController,
+              maxLines: 4,
+              minLines: 1,
+              controller: widget.definitionController,
               cursorColor: AppColors.black,
               decoration: const InputDecoration(
                 helperText: "Definition",
