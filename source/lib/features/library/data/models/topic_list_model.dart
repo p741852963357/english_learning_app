@@ -15,6 +15,10 @@ class TopicListModel {
     topicList.add(topicModel);
   }
 
+  bool contain(TopicModel topicModel) {
+    return topicList.contains(topicModel);
+  }
+
   factory TopicListModel.fromJson(json) {
     final list = json as List;
     List<TopicModel> topicList = list.map((item) => TopicModel.fromJson(item)).toList();

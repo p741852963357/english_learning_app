@@ -26,6 +26,7 @@ class TopicModel {
         vocabularies = (json['vocabularies'] as List).map((e) => VocabularyModel.fromJson(e)).toList();
 
   Map toJson() => {
+        'id': id,
         'vocabularies': jsonEncode(vocabularies),
         'title': title,
         'visibility': visibility,

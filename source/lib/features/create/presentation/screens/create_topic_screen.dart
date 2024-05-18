@@ -1,9 +1,9 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:client/features/create/data/models/vocabulary_model.dart';
 import 'package:client/features/create/domain/usecases/topic_creation_usecase.dart';
 import 'package:client/features/create/presentation/widgets/vocabulary_textfield_widget.dart';
 import 'package:client/features/create/utils/topic_creation_validator.dart';
+import 'package:client/routes/app_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -24,11 +24,6 @@ class _CreateTopicScreenState extends State<CreateTopicScreen> {
   TextEditingController titleController = TextEditingController();
   List<TextEditingController> termControllers = [TextEditingController(), TextEditingController()];
   List<TextEditingController> definitionControllers = [TextEditingController(), TextEditingController()];
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   void dispose() {
@@ -102,8 +97,11 @@ class _CreateTopicScreenState extends State<CreateTopicScreen> {
                           ));
                         }
                       }
-                      TopicModel topic = await TopicCreationUseCase().createTopic(titleController.text, vocabularies);
-                      ref.read(topicListProvider.notifier).refresh();
+                      TopicCreationUseCase().createTopic(titleController.text, vocabularies).then((value) {
+                        TopicModel topic = value;
+                        ref.read(topicListProvider.notifier).refresh();
+                        context.router.replace(TopicRoute(topic: topic));
+                      });
                     }
                   },
                   child: const Text(

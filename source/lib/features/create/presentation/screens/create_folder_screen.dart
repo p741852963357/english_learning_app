@@ -1,7 +1,7 @@
-import 'package:auto_route/annotations.dart';
-import 'package:client/features/create/data/models/folder_model.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:client/features/create/domain/usecases/folder_creation_usecase.dart';
 import 'package:client/features/library/domain/providers/folder_list_provider.dart';
+import 'package:client/routes/app_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -48,8 +48,10 @@ class _CreateFolderScreenState extends State<CreateFolderScreen> {
               return textButtonVisibility
                   ? TextButton(
                       onPressed: () async {
-                        FolderModel folder = await FolderCreationUseCase().createFolder(titleController.text);
-                        ref.read(folderListProvider.notifier).refresh();
+                        FolderCreationUseCase().createFolder(titleController.text).then((value) {
+                          ref.read(folderListProvider.notifier).refresh();
+                          AutoRouter.of(context).replace(FolderRoute(folder: value));
+                        });
                       },
                       style: const ButtonStyle(overlayColor: MaterialStatePropertyAll(Colors.transparent)),
                       child: const Text(

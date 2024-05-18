@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:client/core/local_storage.dart';
 import 'package:client/features/authentication/domain/usecases/authentication_usecase.dart';

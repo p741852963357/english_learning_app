@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:client/constants/app_colors.dart';
 import 'package:client/features/library/domain/providers/topic_list_provider.dart';

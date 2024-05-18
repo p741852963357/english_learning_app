@@ -13,6 +13,10 @@ const topicSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  folders: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Folder",
+  }],
   vocabularies: [
     {
       term: {
@@ -23,10 +27,21 @@ const topicSchema = new mongoose.Schema({
       },
     },
   ],
+  termLanguage: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
   },
+},{
+  toJSON : {virtuals: true},
 });
 
-module.exports = mongoose.model("Topic", topicSchema);
+topicSchema.virtual('users', {
+  ref: "UserTopic",
+  localField: '_id',
+  foreignField: 'topicId',
+})
+
+module.exports = mongoose.models.Topic || mongoose.model("Topic", topicSchema);

@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const {Schema} = require("mongoose");
 
 
 const folderSchema = new mongoose.Schema({
@@ -8,7 +7,7 @@ const folderSchema = new mongoose.Schema({
         required: true,
     },
     topics: [{
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Topic",
     }],
     createdAt: {

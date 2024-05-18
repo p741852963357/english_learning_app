@@ -9,7 +9,56 @@ class AppRouter extends $AppRouter {
 
   @override
   List<AutoRoute> get routes => [
+        CustomRoute(
+          page: TypingRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideBottom,
+          durationInMilliseconds: 300,
+          children: [
+            CustomRoute(
+              initial: true,
+              page: TypingLearningRoute.page,
+              transitionsBuilder: TransitionsBuilders.noTransition,
+            ),
+            CustomRoute(
+              page: TypingResultRoute.page,
+              transitionsBuilder: TransitionsBuilders.noTransition,
+            ),
+          ],
+        ),
+        CustomRoute(
+          page: FlashcardsRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideBottom,
+          durationInMilliseconds: 300,
+          children: [
+            CustomRoute(
+              initial: true,
+              page: FlashcardsLearningRoute.page,
+              transitionsBuilder: TransitionsBuilders.noTransition,
+            ),
+            CustomRoute(
+              page: FlashcardsResultRoute.page,
+              transitionsBuilder: TransitionsBuilders.noTransition,
+            ),
+          ],
+        ),
+        CustomRoute(
+          page: QuizzesRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideBottom,
+          durationInMilliseconds: 300,
+          children: [
+            CustomRoute(
+              initial: true,
+              page: QuizzesLearningRoute.page,
+              transitionsBuilder: TransitionsBuilders.noTransition,
+            ),
+            CustomRoute(
+              page: QuizzedResultRoute.page,
+              transitionsBuilder: TransitionsBuilders.noTransition,
+            ),
+          ],
+        ),
         AutoRoute(page: SplashRoute.page, initial: true),
+        AutoRoute(page: EditTopicRoute.page),
         CustomRoute(
           page: CreateTopicRoute.page,
           transitionsBuilder: (context, animation, secondAnimation, child) {
@@ -28,7 +77,9 @@ class AppRouter extends $AppRouter {
           },
           durationInMilliseconds: 300,
         ),
-        CustomRoute(page: CreateFolderRoute.page, transitionsBuilder: TransitionsBuilders.slideBottom, durationInMilliseconds: 400),
+        CustomRoute(page: AddTopicsToFolderRoute.page, transitionsBuilder: TransitionsBuilders.slideBottom, durationInMilliseconds: 300),
+        CustomRoute(page: CreateFolderRoute.page, transitionsBuilder: TransitionsBuilders.slideBottom, durationInMilliseconds: 300),
+        CustomRoute(page: EditFolderRoute.page, transitionsBuilder: TransitionsBuilders.slideBottom, durationInMilliseconds: 300),
         AutoRoute(page: AppRoute.page, children: [
           AutoRoute(page: CreateRoute.page),
           AutoRoute(page: HomeRoute.page),

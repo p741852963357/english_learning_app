@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:client/features/library/domain/providers/folder_list_provider.dart';
 import 'package:client/features/library/presentation/widgets/folder_widget.dart';
@@ -38,7 +37,7 @@ class _FoldersScreenState extends State<FoldersScreen> {
                             shrinkWrap: true,
                             itemBuilder: (context, index) => GestureDetector(
                               onTap: () {
-                                AutoRouter.of(context).push(const FolderRoute());
+                                AutoRouter.of(context).push(FolderRoute(folder: folderList.get(index)));
                               },
                               child: FolderWidget(
                                 folder: folderList.get(index),
@@ -50,7 +49,9 @@ class _FoldersScreenState extends State<FoldersScreen> {
                       );
               },
               loading: () => Container(),
-              error: (Object error, StackTrace stackTrace) => Container());
+              error: (Object error, StackTrace stackTrace) {
+                return Text(error.toString());
+              });
         },
       ),
     );

@@ -1,9 +1,6 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:client/routes/app_router.gr.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../../../constants/app_colors.dart';
 
@@ -36,17 +33,11 @@ class AuthenticationScreen extends StatelessWidget {
                       children: [
                         Text(
                           "Welcome to",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 24,
-                              color: AppColors.black),
+                          style: TextStyle(fontWeight: FontWeight.w400, fontSize: 24, color: AppColors.black),
                         ),
                         Text(
                           "Wordify",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 72,
-                              color: AppColors.black),
+                          style: TextStyle(fontWeight: FontWeight.w900, fontSize: 72, color: AppColors.black),
                         ),
                       ],
                     ),
@@ -60,8 +51,7 @@ class AuthenticationScreen extends StatelessWidget {
                       AutoRouter.of(context).push(const SignUpRoute());
                     },
                     style: ElevatedButton.styleFrom(
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(7))),
+                      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(7))),
                       splashFactory: NoSplash.splashFactory,
                       shadowColor: Colors.transparent,
                       backgroundColor: AppColors.blue,
@@ -74,8 +64,7 @@ class AuthenticationScreen extends StatelessWidget {
                 ),
                 TextButton(
                     style: const ButtonStyle(
-                      overlayColor:
-                          MaterialStatePropertyAll<Color>(Colors.transparent),
+                      overlayColor: MaterialStatePropertyAll<Color>(Colors.transparent),
                     ),
                     onPressed: () {
                       AutoRouter.of(context).push(const LogInRoute());
