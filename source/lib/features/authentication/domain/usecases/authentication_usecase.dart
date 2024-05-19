@@ -11,4 +11,36 @@ class AuthenticationUseCase {
       return Future.error(e);
     }
   }
+
+  Future<UserModel> loginUser(String email, String password) async {
+    try {
+      return await authenticationRemoteDataSource.loginUser(email, password);
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  Future<void> generateOTP(String email) async {
+    try {
+      await authenticationRemoteDataSource.generateOTP(email);
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  Future<void> resetPassword(String email, String otp, String newPassword) async {
+    try {
+      await authenticationRemoteDataSource.resetPassword(email, otp, newPassword);
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  Future<void> changePassword(String email, String currentPassword, String newPassword) async {
+    try {
+      await authenticationRemoteDataSource.changePassword(email, currentPassword, newPassword);
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
 }

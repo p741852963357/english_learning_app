@@ -1,8 +1,14 @@
-import 'package:auto_route/annotations.dart';
-import 'package:client/constants/app_colors.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:client/core/local_storage.dart';
+import 'package:client/features/authentication/domain/usecases/authentication_usecase.dart';
 import 'package:client/features/authentication/presentation/widgets/custom_text_field.dart';
-import 'package:client/features/create/presentation/widgets/custom_bottom_app_bar.dart';
+import 'package:client/features/authentication/utils/validator.dart';
+import 'package:client/routes/app_router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:client/constants/app_colors.dart';
+
+import '../../../create/presentation/widgets/custom_bottom_app_bar.dart';
+import '../../data/models/user_model.dart';
 
 @RoutePage()
 class LogInScreen extends StatefulWidget {
@@ -13,10 +19,23 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final emailFocusNode = FocusNode();
+  final passwordFocusNode = FocusNode();
+
   String? emailError;
   String? passwordError;
+  bool readOnly = false;
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    emailFocusNode.dispose();
+    passwordFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,22 +54,26 @@ class _LogInScreenState extends State<LogInScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomTextFieldWidget(
+                focusNode: emailFocusNode,
                 onChange: () {
                   setState(() {
                     emailError = null;
                   });
                 },
+                readOnly: readOnly,
                 errorText: emailError,
                 controller: emailController,
                 helperText: 'Email',
                 hintText: "Enter your email",
               ),
               CustomTextFieldWidget(
+                focusNode: passwordFocusNode,
                 onChange: () {
                   setState(() {
                     passwordError = null;
                   });
                 },
+                readOnly: readOnly,
                 obscureText: true,
                 errorText: passwordError,
                 controller: passwordController,
@@ -58,12 +81,13 @@ class _LogInScreenState extends State<LogInScreen> {
                 hintText: "Enter your password",
               ),
               TextButton(
-                style: const ButtonStyle(
-                  overlayColor: MaterialStatePropertyAll<Color>(Colors.transparent),
+                style: ButtonStyle(
+                  overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
                 ),
-                // TODO: Forgot password
-                onPressed: () {},
-                child: const Text(
+                onPressed: () {
+                  AutoRouter.of(context).push(const ForgotPasswordRoute());
+                },
+                child: Text(
                   "Forgot password?",
                   style: TextStyle(color: AppColors.blue),
                 ),
@@ -77,21 +101,54 @@ class _LogInScreenState extends State<LogInScreen> {
       ),
       bottomNavigationBar: CustomBottomAppBar(
         onPressed: () async {
-          if (emailController.text.isEmpty) {
+          final router = AutoRouter.of(context);
+          try {
+            AuthenticationUseCase authenticationUseCase = AuthenticationUseCase();
+            UserModel user = await authenticationUseCase.loginUser(
+              emailController.text.trim(),
+              passwordController.text.trim(),
+            );
+            LocalStorage localStorage = LocalStorage();
+            await localStorage.setUserInfo(user.email);
+            router.pushAndPopUntil(
+              const HomeRoute(),
+              predicate: (_) => false,
+            );
+          } catch (e) {
             setState(() {
-              emailError = "Field is required";
+              readOnly = false;
+              String errorMessage = e.toString();
+              if (errorMessage == "Incorrect password!") {
+                passwordError = errorMessage;
+                passwordFocusNode.requestFocus();
+              } else {
+                emailError = errorMessage;
+                emailFocusNode.requestFocus();
+              }
             });
           }
-          if (passwordController.text.isEmpty) {
-            setState(() {
-              passwordError = "Field is required";
-            });
-          }
-          // TODO: catch more error
-          // TODO: add login
+          setState(() {
+            readOnly = false;
+          });
         },
         validate: () {
-          return null;
+          setState(() {
+            readOnly = true;
+          });
+          Validator validator = Validator();
+          emailError = validator.emailValidator(emailController.text);
+          passwordError = validator.passwordValidator(passwordController.text);
+
+          setState(() {});
+
+          if (emailError == null && passwordError == null) {
+            return true;
+          } else {
+            setState(() {
+              readOnly = false;
+            });
+            return false;
+          }
         },
       ),
     );

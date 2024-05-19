@@ -33,4 +33,15 @@ class Validator {
     }
     return null;
   }
+
+  String? otpValidator(String otp) {
+    otp = otp.trim();
+    if (otp.isEmpty) {
+      return 'Field is required';
+    }
+    if (otp.length != 6) {
+      return 'OTP must contain exactly 6 characters';
+    }
+    return null;
+  }
 }

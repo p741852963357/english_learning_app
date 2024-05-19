@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:client/core/local_storage.dart';
 import 'package:client/features/authentication/domain/usecases/authentication_usecase.dart';
 import 'package:client/features/authentication/presentation/widgets/custom_text_field.dart';
 import 'package:client/features/authentication/utils/validator.dart';
@@ -7,7 +6,6 @@ import 'package:client/routes/app_router.gr.dart';
 import 'package:flutter/material.dart';
 
 import '../../../create/presentation/widgets/custom_bottom_app_bar.dart';
-import '../../data/models/user_model.dart';
 
 @RoutePage()
 class SignUpScreen extends StatefulWidget {
@@ -107,11 +105,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
           final router = AutoRouter.of(context);
           try {
             AuthenticationUseCase authenticationUseCase = AuthenticationUseCase();
-            UserModel user = await authenticationUseCase.createUser(emailController.text.trim(), passwordController.text.trim());
-            LocalStorage localStorage = LocalStorage();
-            await localStorage.setUserInfo(user.email);
+            await authenticationUseCase.createUser(emailController.text.trim(), passwordController.text.trim());
             router.pushAndPopUntil(
-              const HomeRoute(),
+              const AuthenticationRoute(),
               predicate: (_) => false,
             );
           } catch (e) {
