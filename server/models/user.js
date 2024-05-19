@@ -23,10 +23,15 @@ const userSchema = new mongoose.Schema({
   toJSON: {virtuals: true},
 });
 
+userSchema.set('toJSON', {virtuals: true});
+userSchema.set('toObject', {virtuals: true});
+
 userSchema.virtual('topics', {
   ref: "UserTopic",
   localField: 'email',
   foreignField: 'userEmail'
 })
 
-module.exports = mongoose.model("User", userSchema);
+
+
+module.exports = mongoose.models.User || mongoose.model("User", userSchema);

@@ -7,8 +7,9 @@ class Flashcards {
   int trueNum;
   int falseNum;
   int index;
+  String id;
 
-  Flashcards(this.vocabularies, this.trueNum, this.falseNum, this.index);
+  Flashcards(this.vocabularies, this.trueNum, this.falseNum, this.index, this.id);
 
   int get length => vocabularies.length;
 
@@ -30,12 +31,13 @@ class Flashcards {
     }
   }
 
-  Flashcards copyWith({List<VocabularyModel>? vocabularies, int? trueNum, int? falseNum, int? index}) {
+  Flashcards copyWith({List<VocabularyModel>? vocabularies, int? trueNum, int? falseNum, int? index, String? id}) {
     return Flashcards(
       vocabularies ?? this.vocabularies,
       trueNum ?? this.trueNum,
       falseNum ?? this.falseNum,
       index ?? this.index,
+      id ?? this.id,
     );
   }
 }

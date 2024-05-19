@@ -25,6 +25,7 @@ class _EditTopicScreenState extends State<EditTopicScreen> {
   TextEditingController titleController = TextEditingController();
   List<TextEditingController> termControllers = [];
   List<TextEditingController> definitionControllers = [];
+  List<bool> stars = [];
 
   @override
   void initState() {
@@ -32,6 +33,7 @@ class _EditTopicScreenState extends State<EditTopicScreen> {
     for (VocabularyModel vocabulary in widget.topicModel.vocabularies) {
       termControllers.add(TextEditingController(text: vocabulary.term));
       definitionControllers.add(TextEditingController(text: vocabulary.definition));
+      stars.add(vocabulary.star);
     }
     super.initState();
   }
@@ -105,6 +107,7 @@ class _EditTopicScreenState extends State<EditTopicScreen> {
                           vocabularies.add(VocabularyModel(
                             term: termControllers[i].text,
                             definition: definitionControllers[i].text,
+                            star: stars[i],
                           ));
                         }
                       }
@@ -184,6 +187,7 @@ class _EditTopicScreenState extends State<EditTopicScreen> {
                                           definitionControllers[index].dispose();
                                           termControllers.removeAt(index);
                                           definitionControllers.removeAt(index);
+                                          stars.removeAt(index);
                                         });
                                       },
                                       child: const Icon(
@@ -240,6 +244,7 @@ class _EditTopicScreenState extends State<EditTopicScreen> {
                 setState(() {
                   termControllers.add(TextEditingController());
                   definitionControllers.add(TextEditingController());
+                  stars.add(false);
                 });
               },
               style: ElevatedButton.styleFrom(

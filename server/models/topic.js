@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const topicSchema = new mongoose.Schema({
   title: {
@@ -13,10 +13,12 @@ const topicSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  folders: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Folder",
-  }],
+  folders: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Folder",
+    },
+  ],
   vocabularies: [
     {
       term: {
@@ -25,6 +27,30 @@ const topicSchema = new mongoose.Schema({
       definition: {
         type: String,
       },
+      star: {
+        type: Boolean,
+        default: false,
+      },
+    },
+  ],
+  ranking: [
+    {
+      user: {
+        type: String,
+        ref: "User",
+      },
+      start: {
+        type: Date,
+        required: true,
+      },
+      end: {
+        type: Date,
+        required: true,
+      },
+      createdAt: {
+        type: Date,
+        default: Date.now,
+      }
     },
   ],
   termLanguage: {
@@ -34,14 +60,14 @@ const topicSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-},{
-  toJSON : {virtuals: true},
 });
+topicSchema.set("toJSON", { virtuals: true });
+topicSchema.set("toObject", { virtuals: true });
 
-topicSchema.virtual('users', {
+topicSchema.virtual("users", {
   ref: "UserTopic",
-  localField: '_id',
-  foreignField: 'topicId',
-})
+  localField: "_id",
+  foreignField: "topicId",
+});
 
 module.exports = mongoose.models.Topic || mongoose.model("Topic", topicSchema);

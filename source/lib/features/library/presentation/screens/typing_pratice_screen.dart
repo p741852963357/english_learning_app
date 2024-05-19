@@ -7,6 +7,7 @@ import '../../../../constants/app_colors.dart';
 import '../../domain/providers/flashcards_provider.dart';
 import '../widgets/custom_back_button.dart';
 import '../widgets/custom_linear_progress_indicator.dart';
+import '../widgets/option_widget.dart';
 
 @RoutePage()
 class TypingScreen extends ConsumerStatefulWidget {
@@ -49,7 +50,35 @@ class _TypingPracticeScreenState extends ConsumerState<TypingScreen> {
           data.index == lastIndex
               ? const SizedBox()
               : IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: ListView(
+                            shrinkWrap: true,
+                            children: [
+                              OptionWidget(
+                                icon: const Icon(Icons.shuffle),
+                                title: 'Shuffle',
+                                onTap: () {
+                                  ref.read(flashcardsProvider.notifier).shuffle();
+                                },
+                              ),
+                              OptionWidget(
+                                icon: const Icon(Icons.swap_horiz),
+                                title: 'Switch term with definition',
+                                onTap: () {
+                                  ref.read(flashcardsProvider.notifier).switchCard();
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
                   icon: const Icon(
                     Icons.settings_rounded,
                     color: AppColors.black,

@@ -1,5 +1,10 @@
-const Topic = require("../models/topic");
+
+const Topic = require("../models/Topic");
+const UserTopic = require("../models/UserTopic");
+
 const mongoose = require("mongoose");
+const  User = require("../models/User");
+const express = require("express");
 
 const createTopic = async (req, res) => {
   let { title, vocabularies, owner } = req.body;
@@ -23,6 +28,32 @@ const getTopicsByEmail = async (req, res) => {
   });
 };
 
+const updateRanking = async (req, res) => {
+  let data = req.body;
+  const topic = await Topic.findOne({ _id: data.id });
+  topic.ranking.push({
+    user: data.email,
+    start: data.start,
+    end: data.end,
+    createdAt: Date.now(),
+  });
+  await topic.save()
+  return res.status(200).json({
+    message: "Topic Updated",
+  });
+}
+
+const getRanking = async (req, res) => {
+  let data = req.body;
+  const topic = await Topic.findOne({ _id: data.id });
+  await  topic.
+  topic.ranking.sort(function(a,b){return (b.end - b.start)  - (a.end - a.start)})
+  return res.status(200).json({
+    message: "Ranking ",
+    data: topic
+  });
+}
+
 const deleteTopic = async (req, res) => {
   let { id, email } = req.body;
   const result = await Topic.findOne({ owner: email, _id: id });
@@ -34,10 +65,13 @@ const deleteTopic = async (req, res) => {
     }
   }
   await Topic.findOneAndDelete({ owner: email, _id: id });
+  await UserTopic.findOneAndDelete({ topicId: id });
   return res.status(200).json({
     message: "Topic Deleted",
   });
 };
+
+
 
 const editTopic = async (req, res) => {
   const topic = await Topic.findOneAndUpdate(
@@ -78,6 +112,17 @@ const getPublicTopics = async (req, res) => {
   });
 }
 
+const saveTopic = async (req, res) => {
+  let { email, id } = req.body;
+
+  await UserTopic.updateOne({topicId: id, userEmail: email},{},{upsert: true})
+  let user = await User.findOne({email: email}).populate({path: 'topics', populate :{ path : 'topicId'}});
+  return res.status(200).json({
+    message: "topics saved",
+    data: user.topics,
+  });
+}
+
 
 module.exports = {
   createTopic,
@@ -85,5 +130,7 @@ module.exports = {
   deleteTopic,
   editTopic,
   editTopicVisibility,
-  getPublicTopics
+  getPublicTopics,
+  saveTopic,
+  updateRanking
 };

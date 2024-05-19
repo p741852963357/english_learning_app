@@ -23,10 +23,7 @@ const createUser = async (req, res) => {
 
 const getUserPublicTopics = async (req, res) => {
   let email = req.query.email;
-  const user = await User.find({ email: email }).populate({
-    path: 'topics',
-    populate: { path: 'topicId' }
-  });
+  let user = await User.findOne({email: email}).populate({path: 'topics', populate :{ path : 'topicId'}});
   if(!user.topics){
     return res.status(200).json({
       message: "User public topics",
@@ -36,6 +33,15 @@ const getUserPublicTopics = async (req, res) => {
   return res.status(200).json({
     message: "User public topics",
     data: user.topics,
+  });
+}
+
+
+const removeUserPublicTopics = async (req, res) => {
+  let {email, id} = req.body;
+  await UserTopic.findOneAndDelete({userEmail: email, topicId: id });
+  return res.status(200).json({
+    message: "Removed user public topic",
   });
 }
 
@@ -103,10 +109,15 @@ const resetPassword = async (req, res) => {
 
 const findUser = async (req, res) => {};
 
+
 module.exports = {
   createUser,
   getUserPublicTopics,
+
+  removeUserPublicTopics
+
   loginUser,
   generateOTP,
   resetPassword,
+
 };

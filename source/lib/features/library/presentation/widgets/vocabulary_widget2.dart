@@ -3,18 +3,18 @@ import 'package:flutter_tts/flutter_tts.dart';
 
 import '../../../../constants/app_colors.dart';
 
-class VocabularyWidget extends StatefulWidget {
+class VocabularyWidget2 extends StatefulWidget {
   final String term;
   final String definition;
   final bool star;
   final Function onPress;
-  const VocabularyWidget({super.key, required this.term, required this.definition, required this.star, required this.onPress});
+  const VocabularyWidget2({super.key, required this.term, required this.definition, required this.star, required this.onPress});
 
   @override
-  State<VocabularyWidget> createState() => _VocabularyWidgetState();
+  State<VocabularyWidget2> createState() => _VocabularyWidgetState();
 }
 
-class _VocabularyWidgetState extends State<VocabularyWidget> {
+class _VocabularyWidgetState extends State<VocabularyWidget2> {
   bool star = false;
 
   @override
@@ -65,11 +65,8 @@ class _VocabularyWidgetState extends State<VocabularyWidget> {
             IconButton(
               onPressed: () {
                 widget.onPress();
-                setState(() {
-                  star = !star;
-                });
               },
-              icon: star ? const Icon(Icons.star_rounded) : const Icon(Icons.star_border_rounded),
+              icon: const Icon(Icons.star_rounded),
             )
           ],
         ),

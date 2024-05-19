@@ -1,13 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:client/features/create/data/models/topic_model.dart';
-
 import 'package:client/features/library/domain/providers/flashcards_provider.dart';
 import 'package:client/features/library/presentation/widgets/custom_back_button.dart';
 import 'package:client/features/library/presentation/widgets/custom_linear_progress_indicator.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../constants/app_colors.dart';
+import '../widgets/option_widget.dart';
 
 @RoutePage()
 class FlashcardsScreen extends ConsumerStatefulWidget {
@@ -49,7 +48,35 @@ class _FlashcardsScreenState extends ConsumerState<FlashcardsScreen> {
           data.index == lastIndex
               ? const SizedBox()
               : IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: ListView(
+                            shrinkWrap: true,
+                            children: [
+                              OptionWidget(
+                                icon: const Icon(Icons.shuffle),
+                                title: 'Shuffle',
+                                onTap: () {
+                                  ref.read(flashcardsProvider.notifier).shuffle();
+                                },
+                              ),
+                              OptionWidget(
+                                icon: const Icon(Icons.swap_horiz),
+                                title: 'Switch term with definition',
+                                onTap: () {
+                                  ref.read(flashcardsProvider.notifier).switchCard();
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
                   icon: const Icon(
                     Icons.settings_rounded,
                     color: AppColors.black,
