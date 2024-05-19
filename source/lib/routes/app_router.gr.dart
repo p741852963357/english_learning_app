@@ -8,7 +8,7 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i29;
+import 'package:auto_route/auto_route.dart' as _i30;
 import 'package:client/app/app.dart' as _i2;
 import 'package:client/features/authentication/presentation/screens/authentication_screen.dart'
     as _i3;
@@ -17,9 +17,9 @@ import 'package:client/features/authentication/presentation/screens/forgot_passw
 import 'package:client/features/authentication/presentation/screens/log_in_screen.dart'
     as _i17;
 import 'package:client/features/authentication/presentation/screens/sign_up_screen.dart'
-    as _i22;
-import 'package:client/features/create/data/models/folder_model.dart' as _i32;
-import 'package:client/features/create/data/models/topic_model.dart' as _i33;
+    as _i23;
+import 'package:client/features/create/data/models/folder_model.dart' as _i33;
+import 'package:client/features/create/data/models/topic_model.dart' as _i34;
 import 'package:client/features/create/presentation/screens/create_folder_screen.dart'
     as _i4;
 import 'package:client/features/create/presentation/screens/create_screen.dart'
@@ -29,7 +29,7 @@ import 'package:client/features/create/presentation/screens/create_topic_screen.
 import 'package:client/features/home/presentation/screens/home_screen.dart'
     as _i15;
 import 'package:client/features/library/data/models/topic_list_model.dart'
-    as _i31;
+    as _i32;
 import 'package:client/features/library/presentation/screens/add_topics_to_folder_screen.dart'
     as _i1;
 import 'package:client/features/library/presentation/screens/edit_folder_screen.dart'
@@ -54,30 +54,32 @@ import 'package:client/features/library/presentation/screens/quizzes_result_scre
     as _i19;
 import 'package:client/features/library/presentation/screens/quizzes_screen.dart'
     as _i21;
+import 'package:client/features/library/presentation/screens/ranking_screen.dart'
+    as _i22;
 import 'package:client/features/library/presentation/screens/topic_screen.dart'
-    as _i24;
-import 'package:client/features/library/presentation/screens/topics_screen.dart'
     as _i25;
-import 'package:client/features/library/presentation/screens/typing_learning_screen.dart'
+import 'package:client/features/library/presentation/screens/topics_screen.dart'
     as _i26;
-import 'package:client/features/library/presentation/screens/typing_pratice_screen.dart'
-    as _i28;
-import 'package:client/features/library/presentation/screens/typing_result_screen.dart'
+import 'package:client/features/library/presentation/screens/typing_learning_screen.dart'
     as _i27;
+import 'package:client/features/library/presentation/screens/typing_pratice_screen.dart'
+    as _i29;
+import 'package:client/features/library/presentation/screens/typing_result_screen.dart'
+    as _i28;
 import 'package:client/features/profile/presentation/screens/profile_screen.dart'
     as _i18;
 import 'package:client/features/splash/presentation/screens/splash_screen.dart'
-    as _i23;
-import 'package:flutter/material.dart' as _i30;
+    as _i24;
+import 'package:flutter/material.dart' as _i31;
 
-abstract class $AppRouter extends _i29.RootStackRouter {
+abstract class $AppRouter extends _i30.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i29.PageFactory> pagesMap = {
+  final Map<String, _i30.PageFactory> pagesMap = {
     AddTopicsToFolderRoute.name: (routeData) {
       final args = routeData.argsAs<AddTopicsToFolderRouteArgs>();
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i1.AddTopicsToFolderScreen(
           key: args.key,
@@ -87,38 +89,38 @@ abstract class $AppRouter extends _i29.RootStackRouter {
       );
     },
     AppRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i2.AppScreen(),
       );
     },
     AuthenticationRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i3.AuthenticationScreen(),
       );
     },
     CreateFolderRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i4.CreateFolderScreen(),
       );
     },
     CreateRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i5.CreateScreen(),
       );
     },
     CreateTopicRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i6.CreateTopicScreen(),
       );
     },
     EditFolderRoute.name: (routeData) {
       final args = routeData.argsAs<EditFolderRouteArgs>();
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i7.EditFolderScreen(
           key: args.key,
@@ -128,7 +130,7 @@ abstract class $AppRouter extends _i29.RootStackRouter {
     },
     EditTopicRoute.name: (routeData) {
       final args = routeData.argsAs<EditTopicRouteArgs>();
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i8.EditTopicScreen(
           key: args.key,
@@ -137,20 +139,20 @@ abstract class $AppRouter extends _i29.RootStackRouter {
       );
     },
     FlashcardsLearningRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i9.FlashcardsLearningScreen(),
       );
     },
     FlashcardsResultRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i10.FlashcardsResultScreen(),
       );
     },
     FlashcardsRoute.name: (routeData) {
       final args = routeData.argsAs<FlashcardsRouteArgs>();
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i11.FlashcardsScreen(
           args.topic,
@@ -160,7 +162,7 @@ abstract class $AppRouter extends _i29.RootStackRouter {
     },
     FolderRoute.name: (routeData) {
       final args = routeData.argsAs<FolderRouteArgs>();
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i12.FolderScreen(
           key: args.key,
@@ -169,56 +171,56 @@ abstract class $AppRouter extends _i29.RootStackRouter {
       );
     },
     FoldersRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i13.FoldersScreen(),
       );
     },
     ForgotPasswordRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i14.ForgotPasswordScreen(),
       );
     },
     HomeRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i15.HomeScreen(),
       );
     },
     LibraryRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i16.LibraryScreen(),
       );
     },
     LogInRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i17.LogInScreen(),
       );
     },
     ProfileRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i18.ProfileScreen(),
       );
     },
     QuizzedResultRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i19.QuizzedResultScreen(),
       );
     },
     QuizzesLearningRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i20.QuizzesLearningScreen(),
       );
     },
     QuizzesRoute.name: (routeData) {
       final args = routeData.argsAs<QuizzesRouteArgs>();
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i21.QuizzesScreen(
           args.topic,
@@ -226,51 +228,61 @@ abstract class $AppRouter extends _i29.RootStackRouter {
         ),
       );
     },
-    SignUpRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+    RankingRoute.name: (routeData) {
+      final args = routeData.argsAs<RankingRouteArgs>();
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i22.SignUpScreen(),
+        child: _i22.RankingScreen(
+          key: args.key,
+          id: args.id,
+        ),
+      );
+    },
+    SignUpRoute.name: (routeData) {
+      return _i30.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i23.SignUpScreen(),
       );
     },
     SplashRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i23.SplashScreen(),
+        child: const _i24.SplashScreen(),
       );
     },
     TopicRoute.name: (routeData) {
       final args = routeData.argsAs<TopicRouteArgs>();
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i24.TopicScreen(
+        child: _i25.TopicScreen(
           key: args.key,
           topic: args.topic,
         ),
       );
     },
     TopicsRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i25.TopicsScreen(),
+        child: const _i26.TopicsScreen(),
       );
     },
     TypingLearningRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i26.TypingLearningScreen(),
+        child: const _i27.TypingLearningScreen(),
       );
     },
     TypingResultRoute.name: (routeData) {
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i27.TypingResultScreen(),
+        child: const _i28.TypingResultScreen(),
       );
     },
     TypingRoute.name: (routeData) {
       final args = routeData.argsAs<TypingRouteArgs>();
-      return _i29.AutoRoutePage<dynamic>(
+      return _i30.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i28.TypingScreen(
+        child: _i29.TypingScreen(
           key: args.key,
           topic: args.topic,
         ),
@@ -282,12 +294,12 @@ abstract class $AppRouter extends _i29.RootStackRouter {
 /// generated route for
 /// [_i1.AddTopicsToFolderScreen]
 class AddTopicsToFolderRoute
-    extends _i29.PageRouteInfo<AddTopicsToFolderRouteArgs> {
+    extends _i30.PageRouteInfo<AddTopicsToFolderRouteArgs> {
   AddTopicsToFolderRoute({
-    _i30.Key? key,
-    required _i31.TopicListModel topicList,
+    _i31.Key? key,
+    required _i32.TopicListModel topicList,
     required String folderId,
-    List<_i29.PageRouteInfo>? children,
+    List<_i30.PageRouteInfo>? children,
   }) : super(
           AddTopicsToFolderRoute.name,
           args: AddTopicsToFolderRouteArgs(
@@ -300,8 +312,8 @@ class AddTopicsToFolderRoute
 
   static const String name = 'AddTopicsToFolderRoute';
 
-  static const _i29.PageInfo<AddTopicsToFolderRouteArgs> page =
-      _i29.PageInfo<AddTopicsToFolderRouteArgs>(name);
+  static const _i30.PageInfo<AddTopicsToFolderRouteArgs> page =
+      _i30.PageInfo<AddTopicsToFolderRouteArgs>(name);
 }
 
 class AddTopicsToFolderRouteArgs {
@@ -311,9 +323,9 @@ class AddTopicsToFolderRouteArgs {
     required this.folderId,
   });
 
-  final _i30.Key? key;
+  final _i31.Key? key;
 
-  final _i31.TopicListModel topicList;
+  final _i32.TopicListModel topicList;
 
   final String folderId;
 
@@ -325,8 +337,8 @@ class AddTopicsToFolderRouteArgs {
 
 /// generated route for
 /// [_i2.AppScreen]
-class AppRoute extends _i29.PageRouteInfo<void> {
-  const AppRoute({List<_i29.PageRouteInfo>? children})
+class AppRoute extends _i30.PageRouteInfo<void> {
+  const AppRoute({List<_i30.PageRouteInfo>? children})
       : super(
           AppRoute.name,
           initialChildren: children,
@@ -334,13 +346,13 @@ class AppRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'AppRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i3.AuthenticationScreen]
-class AuthenticationRoute extends _i29.PageRouteInfo<void> {
-  const AuthenticationRoute({List<_i29.PageRouteInfo>? children})
+class AuthenticationRoute extends _i30.PageRouteInfo<void> {
+  const AuthenticationRoute({List<_i30.PageRouteInfo>? children})
       : super(
           AuthenticationRoute.name,
           initialChildren: children,
@@ -348,13 +360,13 @@ class AuthenticationRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'AuthenticationRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i4.CreateFolderScreen]
-class CreateFolderRoute extends _i29.PageRouteInfo<void> {
-  const CreateFolderRoute({List<_i29.PageRouteInfo>? children})
+class CreateFolderRoute extends _i30.PageRouteInfo<void> {
+  const CreateFolderRoute({List<_i30.PageRouteInfo>? children})
       : super(
           CreateFolderRoute.name,
           initialChildren: children,
@@ -362,13 +374,13 @@ class CreateFolderRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'CreateFolderRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i5.CreateScreen]
-class CreateRoute extends _i29.PageRouteInfo<void> {
-  const CreateRoute({List<_i29.PageRouteInfo>? children})
+class CreateRoute extends _i30.PageRouteInfo<void> {
+  const CreateRoute({List<_i30.PageRouteInfo>? children})
       : super(
           CreateRoute.name,
           initialChildren: children,
@@ -376,13 +388,13 @@ class CreateRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'CreateRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i6.CreateTopicScreen]
-class CreateTopicRoute extends _i29.PageRouteInfo<void> {
-  const CreateTopicRoute({List<_i29.PageRouteInfo>? children})
+class CreateTopicRoute extends _i30.PageRouteInfo<void> {
+  const CreateTopicRoute({List<_i30.PageRouteInfo>? children})
       : super(
           CreateTopicRoute.name,
           initialChildren: children,
@@ -390,16 +402,16 @@ class CreateTopicRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'CreateTopicRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i7.EditFolderScreen]
-class EditFolderRoute extends _i29.PageRouteInfo<EditFolderRouteArgs> {
+class EditFolderRoute extends _i30.PageRouteInfo<EditFolderRouteArgs> {
   EditFolderRoute({
-    _i30.Key? key,
-    required _i32.FolderModel folder,
-    List<_i29.PageRouteInfo>? children,
+    _i31.Key? key,
+    required _i33.FolderModel folder,
+    List<_i30.PageRouteInfo>? children,
   }) : super(
           EditFolderRoute.name,
           args: EditFolderRouteArgs(
@@ -411,8 +423,8 @@ class EditFolderRoute extends _i29.PageRouteInfo<EditFolderRouteArgs> {
 
   static const String name = 'EditFolderRoute';
 
-  static const _i29.PageInfo<EditFolderRouteArgs> page =
-      _i29.PageInfo<EditFolderRouteArgs>(name);
+  static const _i30.PageInfo<EditFolderRouteArgs> page =
+      _i30.PageInfo<EditFolderRouteArgs>(name);
 }
 
 class EditFolderRouteArgs {
@@ -421,9 +433,9 @@ class EditFolderRouteArgs {
     required this.folder,
   });
 
-  final _i30.Key? key;
+  final _i31.Key? key;
 
-  final _i32.FolderModel folder;
+  final _i33.FolderModel folder;
 
   @override
   String toString() {
@@ -433,11 +445,11 @@ class EditFolderRouteArgs {
 
 /// generated route for
 /// [_i8.EditTopicScreen]
-class EditTopicRoute extends _i29.PageRouteInfo<EditTopicRouteArgs> {
+class EditTopicRoute extends _i30.PageRouteInfo<EditTopicRouteArgs> {
   EditTopicRoute({
-    _i30.Key? key,
-    required _i33.TopicModel topicModel,
-    List<_i29.PageRouteInfo>? children,
+    _i31.Key? key,
+    required _i34.TopicModel topicModel,
+    List<_i30.PageRouteInfo>? children,
   }) : super(
           EditTopicRoute.name,
           args: EditTopicRouteArgs(
@@ -449,8 +461,8 @@ class EditTopicRoute extends _i29.PageRouteInfo<EditTopicRouteArgs> {
 
   static const String name = 'EditTopicRoute';
 
-  static const _i29.PageInfo<EditTopicRouteArgs> page =
-      _i29.PageInfo<EditTopicRouteArgs>(name);
+  static const _i30.PageInfo<EditTopicRouteArgs> page =
+      _i30.PageInfo<EditTopicRouteArgs>(name);
 }
 
 class EditTopicRouteArgs {
@@ -459,9 +471,9 @@ class EditTopicRouteArgs {
     required this.topicModel,
   });
 
-  final _i30.Key? key;
+  final _i31.Key? key;
 
-  final _i33.TopicModel topicModel;
+  final _i34.TopicModel topicModel;
 
   @override
   String toString() {
@@ -471,8 +483,8 @@ class EditTopicRouteArgs {
 
 /// generated route for
 /// [_i9.FlashcardsLearningScreen]
-class FlashcardsLearningRoute extends _i29.PageRouteInfo<void> {
-  const FlashcardsLearningRoute({List<_i29.PageRouteInfo>? children})
+class FlashcardsLearningRoute extends _i30.PageRouteInfo<void> {
+  const FlashcardsLearningRoute({List<_i30.PageRouteInfo>? children})
       : super(
           FlashcardsLearningRoute.name,
           initialChildren: children,
@@ -480,13 +492,13 @@ class FlashcardsLearningRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'FlashcardsLearningRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i10.FlashcardsResultScreen]
-class FlashcardsResultRoute extends _i29.PageRouteInfo<void> {
-  const FlashcardsResultRoute({List<_i29.PageRouteInfo>? children})
+class FlashcardsResultRoute extends _i30.PageRouteInfo<void> {
+  const FlashcardsResultRoute({List<_i30.PageRouteInfo>? children})
       : super(
           FlashcardsResultRoute.name,
           initialChildren: children,
@@ -494,16 +506,16 @@ class FlashcardsResultRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'FlashcardsResultRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i11.FlashcardsScreen]
-class FlashcardsRoute extends _i29.PageRouteInfo<FlashcardsRouteArgs> {
+class FlashcardsRoute extends _i30.PageRouteInfo<FlashcardsRouteArgs> {
   FlashcardsRoute({
-    required _i33.TopicModel topic,
-    _i30.Key? key,
-    List<_i29.PageRouteInfo>? children,
+    required _i34.TopicModel topic,
+    _i31.Key? key,
+    List<_i30.PageRouteInfo>? children,
   }) : super(
           FlashcardsRoute.name,
           args: FlashcardsRouteArgs(
@@ -515,8 +527,8 @@ class FlashcardsRoute extends _i29.PageRouteInfo<FlashcardsRouteArgs> {
 
   static const String name = 'FlashcardsRoute';
 
-  static const _i29.PageInfo<FlashcardsRouteArgs> page =
-      _i29.PageInfo<FlashcardsRouteArgs>(name);
+  static const _i30.PageInfo<FlashcardsRouteArgs> page =
+      _i30.PageInfo<FlashcardsRouteArgs>(name);
 }
 
 class FlashcardsRouteArgs {
@@ -525,9 +537,9 @@ class FlashcardsRouteArgs {
     this.key,
   });
 
-  final _i33.TopicModel topic;
+  final _i34.TopicModel topic;
 
-  final _i30.Key? key;
+  final _i31.Key? key;
 
   @override
   String toString() {
@@ -537,11 +549,11 @@ class FlashcardsRouteArgs {
 
 /// generated route for
 /// [_i12.FolderScreen]
-class FolderRoute extends _i29.PageRouteInfo<FolderRouteArgs> {
+class FolderRoute extends _i30.PageRouteInfo<FolderRouteArgs> {
   FolderRoute({
-    _i30.Key? key,
-    required _i32.FolderModel folder,
-    List<_i29.PageRouteInfo>? children,
+    _i31.Key? key,
+    required _i33.FolderModel folder,
+    List<_i30.PageRouteInfo>? children,
   }) : super(
           FolderRoute.name,
           args: FolderRouteArgs(
@@ -553,8 +565,8 @@ class FolderRoute extends _i29.PageRouteInfo<FolderRouteArgs> {
 
   static const String name = 'FolderRoute';
 
-  static const _i29.PageInfo<FolderRouteArgs> page =
-      _i29.PageInfo<FolderRouteArgs>(name);
+  static const _i30.PageInfo<FolderRouteArgs> page =
+      _i30.PageInfo<FolderRouteArgs>(name);
 }
 
 class FolderRouteArgs {
@@ -563,9 +575,9 @@ class FolderRouteArgs {
     required this.folder,
   });
 
-  final _i30.Key? key;
+  final _i31.Key? key;
 
-  final _i32.FolderModel folder;
+  final _i33.FolderModel folder;
 
   @override
   String toString() {
@@ -575,8 +587,8 @@ class FolderRouteArgs {
 
 /// generated route for
 /// [_i13.FoldersScreen]
-class FoldersRoute extends _i29.PageRouteInfo<void> {
-  const FoldersRoute({List<_i29.PageRouteInfo>? children})
+class FoldersRoute extends _i30.PageRouteInfo<void> {
+  const FoldersRoute({List<_i30.PageRouteInfo>? children})
       : super(
           FoldersRoute.name,
           initialChildren: children,
@@ -584,13 +596,13 @@ class FoldersRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'FoldersRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i14.ForgotPasswordScreen]
-class ForgotPasswordRoute extends _i29.PageRouteInfo<void> {
-  const ForgotPasswordRoute({List<_i29.PageRouteInfo>? children})
+class ForgotPasswordRoute extends _i30.PageRouteInfo<void> {
+  const ForgotPasswordRoute({List<_i30.PageRouteInfo>? children})
       : super(
           ForgotPasswordRoute.name,
           initialChildren: children,
@@ -598,13 +610,13 @@ class ForgotPasswordRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'ForgotPasswordRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i15.HomeScreen]
-class HomeRoute extends _i29.PageRouteInfo<void> {
-  const HomeRoute({List<_i29.PageRouteInfo>? children})
+class HomeRoute extends _i30.PageRouteInfo<void> {
+  const HomeRoute({List<_i30.PageRouteInfo>? children})
       : super(
           HomeRoute.name,
           initialChildren: children,
@@ -612,13 +624,13 @@ class HomeRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i16.LibraryScreen]
-class LibraryRoute extends _i29.PageRouteInfo<void> {
-  const LibraryRoute({List<_i29.PageRouteInfo>? children})
+class LibraryRoute extends _i30.PageRouteInfo<void> {
+  const LibraryRoute({List<_i30.PageRouteInfo>? children})
       : super(
           LibraryRoute.name,
           initialChildren: children,
@@ -626,13 +638,13 @@ class LibraryRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'LibraryRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i17.LogInScreen]
-class LogInRoute extends _i29.PageRouteInfo<void> {
-  const LogInRoute({List<_i29.PageRouteInfo>? children})
+class LogInRoute extends _i30.PageRouteInfo<void> {
+  const LogInRoute({List<_i30.PageRouteInfo>? children})
       : super(
           LogInRoute.name,
           initialChildren: children,
@@ -640,13 +652,13 @@ class LogInRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'LogInRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i18.ProfileScreen]
-class ProfileRoute extends _i29.PageRouteInfo<void> {
-  const ProfileRoute({List<_i29.PageRouteInfo>? children})
+class ProfileRoute extends _i30.PageRouteInfo<void> {
+  const ProfileRoute({List<_i30.PageRouteInfo>? children})
       : super(
           ProfileRoute.name,
           initialChildren: children,
@@ -654,13 +666,13 @@ class ProfileRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'ProfileRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i19.QuizzedResultScreen]
-class QuizzedResultRoute extends _i29.PageRouteInfo<void> {
-  const QuizzedResultRoute({List<_i29.PageRouteInfo>? children})
+class QuizzedResultRoute extends _i30.PageRouteInfo<void> {
+  const QuizzedResultRoute({List<_i30.PageRouteInfo>? children})
       : super(
           QuizzedResultRoute.name,
           initialChildren: children,
@@ -668,13 +680,13 @@ class QuizzedResultRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'QuizzedResultRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i20.QuizzesLearningScreen]
-class QuizzesLearningRoute extends _i29.PageRouteInfo<void> {
-  const QuizzesLearningRoute({List<_i29.PageRouteInfo>? children})
+class QuizzesLearningRoute extends _i30.PageRouteInfo<void> {
+  const QuizzesLearningRoute({List<_i30.PageRouteInfo>? children})
       : super(
           QuizzesLearningRoute.name,
           initialChildren: children,
@@ -682,16 +694,16 @@ class QuizzesLearningRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'QuizzesLearningRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i21.QuizzesScreen]
-class QuizzesRoute extends _i29.PageRouteInfo<QuizzesRouteArgs> {
+class QuizzesRoute extends _i30.PageRouteInfo<QuizzesRouteArgs> {
   QuizzesRoute({
-    required _i33.TopicModel topic,
-    _i30.Key? key,
-    List<_i29.PageRouteInfo>? children,
+    required _i34.TopicModel topic,
+    _i31.Key? key,
+    List<_i30.PageRouteInfo>? children,
   }) : super(
           QuizzesRoute.name,
           args: QuizzesRouteArgs(
@@ -703,8 +715,8 @@ class QuizzesRoute extends _i29.PageRouteInfo<QuizzesRouteArgs> {
 
   static const String name = 'QuizzesRoute';
 
-  static const _i29.PageInfo<QuizzesRouteArgs> page =
-      _i29.PageInfo<QuizzesRouteArgs>(name);
+  static const _i30.PageInfo<QuizzesRouteArgs> page =
+      _i30.PageInfo<QuizzesRouteArgs>(name);
 }
 
 class QuizzesRouteArgs {
@@ -713,9 +725,9 @@ class QuizzesRouteArgs {
     this.key,
   });
 
-  final _i33.TopicModel topic;
+  final _i34.TopicModel topic;
 
-  final _i30.Key? key;
+  final _i31.Key? key;
 
   @override
   String toString() {
@@ -724,9 +736,47 @@ class QuizzesRouteArgs {
 }
 
 /// generated route for
-/// [_i22.SignUpScreen]
-class SignUpRoute extends _i29.PageRouteInfo<void> {
-  const SignUpRoute({List<_i29.PageRouteInfo>? children})
+/// [_i22.RankingScreen]
+class RankingRoute extends _i30.PageRouteInfo<RankingRouteArgs> {
+  RankingRoute({
+    _i31.Key? key,
+    required String id,
+    List<_i30.PageRouteInfo>? children,
+  }) : super(
+          RankingRoute.name,
+          args: RankingRouteArgs(
+            key: key,
+            id: id,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'RankingRoute';
+
+  static const _i30.PageInfo<RankingRouteArgs> page =
+      _i30.PageInfo<RankingRouteArgs>(name);
+}
+
+class RankingRouteArgs {
+  const RankingRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final _i31.Key? key;
+
+  final String id;
+
+  @override
+  String toString() {
+    return 'RankingRouteArgs{key: $key, id: $id}';
+  }
+}
+
+/// generated route for
+/// [_i23.SignUpScreen]
+class SignUpRoute extends _i30.PageRouteInfo<void> {
+  const SignUpRoute({List<_i30.PageRouteInfo>? children})
       : super(
           SignUpRoute.name,
           initialChildren: children,
@@ -734,13 +784,13 @@ class SignUpRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'SignUpRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i23.SplashScreen]
-class SplashRoute extends _i29.PageRouteInfo<void> {
-  const SplashRoute({List<_i29.PageRouteInfo>? children})
+/// [_i24.SplashScreen]
+class SplashRoute extends _i30.PageRouteInfo<void> {
+  const SplashRoute({List<_i30.PageRouteInfo>? children})
       : super(
           SplashRoute.name,
           initialChildren: children,
@@ -748,16 +798,16 @@ class SplashRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'SplashRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i24.TopicScreen]
-class TopicRoute extends _i29.PageRouteInfo<TopicRouteArgs> {
+/// [_i25.TopicScreen]
+class TopicRoute extends _i30.PageRouteInfo<TopicRouteArgs> {
   TopicRoute({
-    _i30.Key? key,
-    required _i33.TopicModel topic,
-    List<_i29.PageRouteInfo>? children,
+    _i31.Key? key,
+    required _i34.TopicModel topic,
+    List<_i30.PageRouteInfo>? children,
   }) : super(
           TopicRoute.name,
           args: TopicRouteArgs(
@@ -769,8 +819,8 @@ class TopicRoute extends _i29.PageRouteInfo<TopicRouteArgs> {
 
   static const String name = 'TopicRoute';
 
-  static const _i29.PageInfo<TopicRouteArgs> page =
-      _i29.PageInfo<TopicRouteArgs>(name);
+  static const _i30.PageInfo<TopicRouteArgs> page =
+      _i30.PageInfo<TopicRouteArgs>(name);
 }
 
 class TopicRouteArgs {
@@ -779,9 +829,9 @@ class TopicRouteArgs {
     required this.topic,
   });
 
-  final _i30.Key? key;
+  final _i31.Key? key;
 
-  final _i33.TopicModel topic;
+  final _i34.TopicModel topic;
 
   @override
   String toString() {
@@ -790,9 +840,9 @@ class TopicRouteArgs {
 }
 
 /// generated route for
-/// [_i25.TopicsScreen]
-class TopicsRoute extends _i29.PageRouteInfo<void> {
-  const TopicsRoute({List<_i29.PageRouteInfo>? children})
+/// [_i26.TopicsScreen]
+class TopicsRoute extends _i30.PageRouteInfo<void> {
+  const TopicsRoute({List<_i30.PageRouteInfo>? children})
       : super(
           TopicsRoute.name,
           initialChildren: children,
@@ -800,13 +850,13 @@ class TopicsRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'TopicsRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i26.TypingLearningScreen]
-class TypingLearningRoute extends _i29.PageRouteInfo<void> {
-  const TypingLearningRoute({List<_i29.PageRouteInfo>? children})
+/// [_i27.TypingLearningScreen]
+class TypingLearningRoute extends _i30.PageRouteInfo<void> {
+  const TypingLearningRoute({List<_i30.PageRouteInfo>? children})
       : super(
           TypingLearningRoute.name,
           initialChildren: children,
@@ -814,13 +864,13 @@ class TypingLearningRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'TypingLearningRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i27.TypingResultScreen]
-class TypingResultRoute extends _i29.PageRouteInfo<void> {
-  const TypingResultRoute({List<_i29.PageRouteInfo>? children})
+/// [_i28.TypingResultScreen]
+class TypingResultRoute extends _i30.PageRouteInfo<void> {
+  const TypingResultRoute({List<_i30.PageRouteInfo>? children})
       : super(
           TypingResultRoute.name,
           initialChildren: children,
@@ -828,16 +878,16 @@ class TypingResultRoute extends _i29.PageRouteInfo<void> {
 
   static const String name = 'TypingResultRoute';
 
-  static const _i29.PageInfo<void> page = _i29.PageInfo<void>(name);
+  static const _i30.PageInfo<void> page = _i30.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i28.TypingScreen]
-class TypingRoute extends _i29.PageRouteInfo<TypingRouteArgs> {
+/// [_i29.TypingScreen]
+class TypingRoute extends _i30.PageRouteInfo<TypingRouteArgs> {
   TypingRoute({
-    _i30.Key? key,
-    required _i33.TopicModel topic,
-    List<_i29.PageRouteInfo>? children,
+    _i31.Key? key,
+    required _i34.TopicModel topic,
+    List<_i30.PageRouteInfo>? children,
   }) : super(
           TypingRoute.name,
           args: TypingRouteArgs(
@@ -849,8 +899,8 @@ class TypingRoute extends _i29.PageRouteInfo<TypingRouteArgs> {
 
   static const String name = 'TypingRoute';
 
-  static const _i29.PageInfo<TypingRouteArgs> page =
-      _i29.PageInfo<TypingRouteArgs>(name);
+  static const _i30.PageInfo<TypingRouteArgs> page =
+      _i30.PageInfo<TypingRouteArgs>(name);
 }
 
 class TypingRouteArgs {
@@ -859,9 +909,9 @@ class TypingRouteArgs {
     required this.topic,
   });
 
-  final _i30.Key? key;
+  final _i31.Key? key;
 
-  final _i33.TopicModel topic;
+  final _i34.TopicModel topic;
 
   @override
   String toString() {

@@ -59,6 +59,7 @@ class AppRouter extends $AppRouter {
         ),
         AutoRoute(page: SplashRoute.page, initial: true),
         AutoRoute(page: EditTopicRoute.page),
+        AutoRoute(page: RankingRoute.page),
         CustomRoute(
           page: CreateTopicRoute.page,
           transitionsBuilder: (context, animation, secondAnimation, child) {

@@ -44,10 +44,11 @@ const updateRanking = async (req, res) => {
 }
 
 const getRanking = async (req, res) => {
-  let data = req.body;
+  let data = req.query;
+
   const topic = await Topic.findOne({ _id: data.id });
-  await  topic.
-  topic.ranking.sort(function(a,b){return (b.end - b.start)  - (a.end - a.start)})
+  console.log(topic)
+  await topic.ranking.sort(function(a,b){return (b.end - b.start)  - (a.end - a.start)}).reverse()
   return res.status(200).json({
     message: "Ranking ",
     data: topic
@@ -124,6 +125,7 @@ const saveTopic = async (req, res) => {
 }
 
 
+
 module.exports = {
   createTopic,
   getTopicsByEmail,
@@ -132,5 +134,6 @@ module.exports = {
   editTopicVisibility,
   getPublicTopics,
   saveTopic,
-  updateRanking
+  updateRanking,
+  getRanking
 };

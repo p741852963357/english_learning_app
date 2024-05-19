@@ -138,6 +138,13 @@ class _TopicScreenState extends ConsumerState<TopicScreen> with SingleTickerProv
                             child: ListView(
                               shrinkWrap: true,
                               children: [
+                                OptionWidget(
+                                  icon: const Icon(Icons.leaderboard),
+                                  title: 'View ranking',
+                                  onTap: () {
+                                    AutoRouter.of(context).push(RankingRoute(id: widget.topic.id.toString()));
+                                  },
+                                ),
                                 data.when(
                                     data: (data) {
                                       bool isTopicInUserList = data.contains(widget.topic);

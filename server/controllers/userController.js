@@ -113,9 +113,7 @@ const findUser = async (req, res) => {};
 module.exports = {
   createUser,
   getUserPublicTopics,
-
   removeUserPublicTopics,
-
   loginUser,
   generateOTP,
   resetPassword,
