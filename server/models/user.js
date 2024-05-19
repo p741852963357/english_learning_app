@@ -13,6 +13,12 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  OTP: {
+    type: String
+  },
+  OTPCreatedAt: {
+    type: Date
+  },
 },{
   toJSON: {virtuals: true},
 });

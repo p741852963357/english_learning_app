@@ -92,6 +92,7 @@ class AppRouter extends $AppRouter {
         AutoRoute(page: AuthenticationRoute.page),
         AutoRoute(page: LogInRoute.page),
         AutoRoute(page: SignUpRoute.page),
+        AutoRoute(page: ForgotPasswordRoute.page),
         CustomRoute(
           page: TopicRoute.page,
           transitionsBuilder: (context, animation, secondAnimation, child) {

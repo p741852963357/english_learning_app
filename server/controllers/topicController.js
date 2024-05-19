@@ -1,4 +1,4 @@
-const Topic = require("../models/Topic");
+const Topic = require("../models/topic");
 const mongoose = require("mongoose");
 
 const createTopic = async (req, res) => {
