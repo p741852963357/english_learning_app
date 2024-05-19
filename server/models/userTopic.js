@@ -23,4 +23,4 @@ const userTopicSchema = new mongoose.Schema({
     ],
 })
 
-module.exports = mongoose.model("UserTopic", userTopicSchema);
+module.exports = mongoose.models.UserTopic || mongoose.model("UserTopic", userTopicSchema);

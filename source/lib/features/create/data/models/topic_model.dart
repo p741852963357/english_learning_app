@@ -10,6 +10,20 @@ class TopicModel {
 
   int get length => vocabularies.length;
 
+  bool containsStar() {
+    for (VocabularyModel vocabularyModel in vocabularies) {
+      if (vocabularyModel.star == true) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  @override
+  String toString() {
+    return title;
+  }
+
   TopicModel({
     required this.title,
     this.visibility = false,

@@ -94,6 +94,7 @@ class _CreateTopicScreenState extends State<CreateTopicScreen> {
                           vocabularies.add(VocabularyModel(
                             term: termControllers[i].text,
                             definition: definitionControllers[i].text,
+                            star: false,
                           ));
                         }
                       }

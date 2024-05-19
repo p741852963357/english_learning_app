@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:client/features/create/data/models/topic_model.dart';
+import 'package:client/features/library/data/models/public_topic_list_model.dart';
 import 'package:client/features/library/data/models/topic_list_model.dart';
 import 'package:http/http.dart' as http;
 import '../../../../core/api.dart';
@@ -46,7 +47,7 @@ class TopicRemoteDataSource {
     }
   }
 
-  Future<TopicListModel> getUserPublicTopics(String email) async {
+  Future<PublicTopicListModel> getUserPublicTopics(String email) async {
     try {
       const endPoint = '/api/users/public';
       final queryParameters = {'email': email};
@@ -57,7 +58,29 @@ class TopicRemoteDataSource {
       );
       final data = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        return TopicListModel.fromJson(data['data']);
+        return PublicTopicListModel.fromJson(data['data']);
+      } else {
+        throw AppException(message: data['message']);
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  Future<String> removeUserPublicTopics(String email, String id) async {
+    try {
+      const endPoint = '/api/users/public/delete';
+      final body = jsonEncode({"id": id, "email": email});
+      final response = await http.post(
+        Uri.parse(URL + endPoint),
+        body: body,
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      final data = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        return data['message'];
       } else {
         throw AppException(message: data['message']);
       }
@@ -88,10 +111,10 @@ class TopicRemoteDataSource {
     }
   }
 
-  Future<String> saveTopic(String email, String id) async {
+  Future<PublicTopicListModel> saveTopic(String email, String id) async {
     try {
       final body = jsonEncode({"id": id, "email": email});
-      const endPoint = '/api/topics/delete';
+      const endPoint = '/api/topics/public';
       final response = await http.post(
         Uri.parse(URL + endPoint),
         body: body,
@@ -101,7 +124,7 @@ class TopicRemoteDataSource {
       );
       final data = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        return data['message'];
+        return PublicTopicListModel.fromJson(data['data']);
       } else {
         throw AppException(message: data['message']);
       }

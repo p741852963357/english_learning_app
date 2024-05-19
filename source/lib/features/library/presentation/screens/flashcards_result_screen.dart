@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../constants/app_colors.dart';
+import '../../domain/providers/ranking_provider.dart';
 
 @RoutePage()
 class FlashcardsResultScreen extends ConsumerStatefulWidget {
@@ -21,6 +22,10 @@ class FlashcardsResultScreen extends ConsumerStatefulWidget {
 
 class _FlashcardsResultScreenState extends ConsumerState<FlashcardsResultScreen> {
   int touchedIndex = -1;
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

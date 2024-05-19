@@ -1,6 +1,7 @@
 import 'package:client/core/local_storage.dart';
 import 'package:client/features/create/data/models/topic_model.dart';
 import 'package:client/features/library/data/datasources/topic_remote_data_source.dart';
+import 'package:client/features/library/data/models/public_topic_list_model.dart';
 import 'package:client/features/library/data/models/topic_list_model.dart';
 
 import '../../../create/data/models/vocabulary_model.dart';
@@ -16,9 +17,19 @@ class TopicUseCase {
     }
   }
 
-  Future<TopicListModel> getUserPublicTopics(String email) async {
+  Future<PublicTopicListModel> getUserPublicTopics(String email) async {
     try {
       return await topicRemoteDataSource.getUserPublicTopics(email);
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  Future<String> removeUserPublicTopics(String id) async {
+    try {
+      LocalStorage localStorage = LocalStorage();
+      String email = await localStorage.getUserInfo();
+      return await topicRemoteDataSource.removeUserPublicTopics(email, id);
     } catch (e) {
       return Future.error(e);
     }
@@ -37,6 +48,16 @@ class TopicUseCase {
       LocalStorage localStorage = LocalStorage();
       String email = await localStorage.getUserInfo();
       return await topicRemoteDataSource.deleteTopic(email, id);
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  Future<PublicTopicListModel> saveTopic(String id) async {
+    try {
+      LocalStorage localStorage = LocalStorage();
+      String email = await localStorage.getUserInfo();
+      return await topicRemoteDataSource.saveTopic(email, id);
     } catch (e) {
       return Future.error(e);
     }

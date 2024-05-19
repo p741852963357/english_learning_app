@@ -3,29 +3,16 @@ import 'package:flutter_tts/flutter_tts.dart';
 
 import '../../../../constants/app_colors.dart';
 
-class VocabularyWidget extends StatefulWidget {
+class VocabularyWidget3 extends StatefulWidget {
   final String term;
   final String definition;
-  final bool star;
-  final Function onPress;
-  const VocabularyWidget({super.key, required this.term, required this.definition, required this.star, required this.onPress});
+  const VocabularyWidget3({super.key, required this.term, required this.definition});
 
   @override
-  State<VocabularyWidget> createState() => _VocabularyWidgetState();
+  State<VocabularyWidget3> createState() => _VocabularyWidgetState();
 }
 
-class _VocabularyWidgetState extends State<VocabularyWidget> {
-  bool star = false;
-
-  @override
-  void initState() {
-    setState(() {
-      star = widget.star;
-    });
-
-    super.initState();
-  }
-
+class _VocabularyWidgetState extends State<VocabularyWidget3> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -62,15 +49,6 @@ class _VocabularyWidgetState extends State<VocabularyWidget> {
               },
               icon: const Icon(Icons.volume_up_outlined),
             ),
-            IconButton(
-              onPressed: () {
-                widget.onPress();
-                setState(() {
-                  star = !star;
-                });
-              },
-              icon: star ? const Icon(Icons.star_rounded) : const Icon(Icons.star_border_rounded),
-            )
           ],
         ),
         subtitle: Text(

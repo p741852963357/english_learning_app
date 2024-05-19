@@ -5,16 +5,37 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class FlashcardsNotifier extends Notifier<Flashcards> {
   @override
   Flashcards build() {
-    return Flashcards([], 0, 0, 0);
+    return Flashcards([], 0, 0, 0, "");
   }
 
-  setVocabularies(List<VocabularyModel> vocabularies) {
-    state.vocabularies = vocabularies;
-  }
-
-  initState(List<VocabularyModel> vocabularies) {
+  initState(List<VocabularyModel> vocabularies, String id) {
     Flashcards flashcards = state.copyWith();
     flashcards.vocabularies = vocabularies;
+    flashcards.index = 0;
+    flashcards.trueNum = 0;
+    flashcards.falseNum = 0;
+    flashcards.id = id;
+    state = flashcards;
+  }
+
+  switchCard() {
+    Flashcards flashcards = state.copyWith();
+    List<VocabularyModel> v = [];
+    for (VocabularyModel vocabulary in flashcards.vocabularies) {
+      v.add(VocabularyModel(term: vocabulary.definition, definition: vocabulary.term, star: vocabulary.star));
+    }
+    flashcards.vocabularies = v;
+    flashcards.index = 0;
+    flashcards.trueNum = 0;
+    flashcards.falseNum = 0;
+    state = flashcards;
+  }
+
+  shuffle() {
+    Flashcards flashcards = state.copyWith();
+    List<VocabularyModel> v = flashcards.vocabularies;
+    v.shuffle();
+    flashcards.vocabularies = v;
     flashcards.index = 0;
     flashcards.trueNum = 0;
     flashcards.falseNum = 0;

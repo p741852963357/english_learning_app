@@ -3,6 +3,8 @@ const userController = require('../controllers/userController');
 const router = express.Router();
 
 router.post('/', userController.createUser);
+router.post('/public/delete', userController.removeUserPublicTopics);
 router.get('/public', userController.getUserPublicTopics);
+
 
 module.exports = router;

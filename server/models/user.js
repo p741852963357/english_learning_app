@@ -13,9 +13,10 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-},{
-  toJSON: {virtuals: true},
-});
+},);
+
+userSchema.set('toJSON', {virtuals: true});
+userSchema.set('toObject', {virtuals: true});
 
 userSchema.virtual('topics', {
   ref: "UserTopic",
@@ -23,4 +24,6 @@ userSchema.virtual('topics', {
   foreignField: 'userEmail'
 })
 
-module.exports = mongoose.model("User", userSchema);
+
+
+module.exports = mongoose.models.User || mongoose.model("User", userSchema);
