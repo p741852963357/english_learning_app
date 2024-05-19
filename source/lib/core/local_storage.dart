@@ -12,4 +12,9 @@ class LocalStorage {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString(this.email, email);
   }
+
+  Future<void> clearUserInfo() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.remove(email);
+  }
 }

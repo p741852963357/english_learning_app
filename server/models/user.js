@@ -13,7 +13,15 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-},);
+  OTP: {
+    type: String
+  },
+  OTPCreatedAt: {
+    type: Date
+  },
+},{
+  toJSON: {virtuals: true},
+});
 
 userSchema.set('toJSON', {virtuals: true});
 userSchema.set('toObject', {virtuals: true});
