@@ -114,7 +114,7 @@ module.exports = {
   createUser,
   getUserPublicTopics,
 
-  removeUserPublicTopics
+  removeUserPublicTopics,
 
   loginUser,
   generateOTP,

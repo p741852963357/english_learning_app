@@ -87,7 +87,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 onPressed: () {
                   AutoRouter.of(context).push(const ForgotPasswordRoute());
                 },
-                child: Text(
+                child: const Text(
                   "Forgot password?",
                   style: TextStyle(color: AppColors.blue),
                 ),
