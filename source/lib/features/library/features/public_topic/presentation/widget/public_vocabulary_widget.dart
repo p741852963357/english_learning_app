@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
-import '../../../../constants/app_colors.dart';
+import '../../../../../../constants/app_colors.dart';
 
-class VocabularyWidget3 extends StatefulWidget {
+class PublicVocabularyWidget extends StatelessWidget {
   final String term;
   final String definition;
-  const VocabularyWidget3({super.key, required this.term, required this.definition});
+  const PublicVocabularyWidget({super.key, required this.term, required this.definition});
 
-  @override
-  State<VocabularyWidget3> createState() => _VocabularyWidgetState();
-}
-
-class _VocabularyWidgetState extends State<VocabularyWidget3> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -32,7 +27,7 @@ class _VocabularyWidgetState extends State<VocabularyWidget3> {
                 children: [
                   Text(
                     maxLines: 4,
-                    widget.term,
+                    term,
                     style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
                   ),
                   const SizedBox(
@@ -45,17 +40,18 @@ class _VocabularyWidgetState extends State<VocabularyWidget3> {
             IconButton(
               onPressed: () async {
                 FlutterTts flutterTts = FlutterTts();
-                await flutterTts.speak(widget.term);
+                await flutterTts.speak(term);
               },
               icon: const Icon(Icons.volume_up_outlined),
             ),
           ],
         ),
         subtitle: Text(
-          widget.definition.isNotEmpty ? widget.definition : '...',
+          definition.isNotEmpty ? definition : '...',
           style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
         ),
       ),
     );
+    ;
   }
 }

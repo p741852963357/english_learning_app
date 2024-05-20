@@ -17,7 +17,8 @@ const createTopic = async (req, res) => {
     topic: newTopic,
   });
 };
-const getTopicsByEmail = async (req, res) => {
+
+const getTopicsOfUser = async (req, res) => {
   let email = req.query.email;
   const topics = await Topic.find({ owner: email }).sort({ createdAt: -1 });
   return res.status(200).json({
@@ -126,7 +127,7 @@ const saveTopic = async (req, res) => {
 
 module.exports = {
   createTopic,
-  getTopicsByEmail,
+  getTopicsOfUser,
   deleteTopic,
   editTopic,
   editTopicVisibility,

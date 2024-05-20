@@ -29,21 +29,21 @@ const getPublicTopicsOfUser = async (req, res) => {
   });
   if (!user.topics) {
     return res.status(200).json({
-      message: "User public topics",
+      message: "Get public topics successfully",
       data: [],
     });
   }
   return res.status(200).json({
-    message: "User public topics",
+    message: "Get public topics successfully",
     data: user.topics,
   });
 };
 
-const removePublicTopicsOfUser = async (req, res) => {
+const removePublicTopicOfUser = async (req, res) => {
   let { email, id } = req.body;
   await UserTopic.findOneAndDelete({ userEmail: email, topicId: id });
   return res.status(200).json({
-    message: "Removed user public topic",
+    message: "public topic is removed",
   });
 };
 
@@ -122,7 +122,7 @@ const changePassword = async (req, res) => {
 module.exports = {
   createUser,
   getPublicTopicsOfUser,
-  removePublicTopicsOfUser,
+  removePublicTopicOfUser,
   loginUser,
   generateOTP,
   resetPassword,

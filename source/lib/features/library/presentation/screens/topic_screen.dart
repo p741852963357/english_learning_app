@@ -2,22 +2,23 @@ import 'package:auto_route/auto_route.dart';
 import 'package:client/core/local_storage.dart';
 import 'package:client/features/create/data/models/topic_model.dart';
 import 'package:client/features/create/data/models/vocabulary_model.dart';
+import 'package:client/features/create/utils/custom_file_picker.dart';
 import 'package:client/features/library/domain/providers/flashcards_provider.dart';
 import 'package:client/features/library/domain/providers/ranking_provider.dart';
 
 import 'package:client/features/library/domain/usecases/topic_usecase.dart';
+import 'package:client/features/library/features/public_topic/domain/providers/public_topics_provider.dart';
 import 'package:client/features/library/presentation/widgets/learning_button.dart';
 import 'package:client/features/library/presentation/widgets/option_widget.dart';
 import 'package:client/features/library/presentation/widgets/vocabulary_widget.dart';
 import 'package:client/routes/app_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../../../../constants/app_colors.dart';
-import '../../domain/providers/public_topic_list_provider.dart';
 import '../../domain/providers/topic_list_provider.dart';
 import '../widgets/delete_topic_dialog.dart';
 import '../widgets/vocabulary_widget2.dart';
-import '../widgets/vocabulary_widget3.dart';
 
 @RoutePage()
 class TopicScreen extends ConsumerStatefulWidget {
@@ -75,7 +76,7 @@ class _TopicScreenState extends ConsumerState<TopicScreen> with SingleTickerProv
 
   @override
   Widget build(BuildContext context) {
-    final data = ref.watch(publicTopicListProvider);
+    final data = ref.watch(publicTopicsProvider);
     return Scaffold(
       backgroundColor: AppColors.lightGrey,
       appBar: AppBar(
@@ -90,87 +91,69 @@ class _TopicScreenState extends ConsumerState<TopicScreen> with SingleTickerProv
                   backgroundColor: Colors.white,
                   context: context,
                   builder: (BuildContext context) {
-                    return userEmail == widget.topic.owner
-                        ? Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: ListView(
-                              shrinkWrap: true,
-                              children: [
-                                OptionWidget(
-                                  icon: const Icon(Icons.edit),
-                                  title: 'Edit topic',
-                                  onTap: () {
-                                    AutoRouter.of(context).push(EditTopicRoute(topicModel: widget.topic));
-                                  },
+                    return Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: ListView(
+                        shrinkWrap: true,
+                        children: [
+                          OptionWidget(
+                            icon: const Icon(Icons.edit),
+                            title: 'Edit topic',
+                            onTap: () {
+                              AutoRouter.of(context).push(EditTopicRoute(topicModel: widget.topic));
+                            },
+                          ),
+                          OptionWidget(
+                            icon: const Icon(Icons.download),
+                            title: 'Download topic',
+                            onTap: () async {
+                              List<List<String>> rows = [];
+                              for (VocabularyModel v in widget.topic.vocabularies) {
+                                rows.add([v.term, v.definition]);
+                              }
+                              bool result = await CustomFilePicker().exportToCsv(rows, widget.topic.title);
+                              if (result) {
+                                Fluttertoast.showToast(
+                                    msg: "This is Center Short Toast",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.CENTER,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                              }
+                            },
+                          ),
+                          Consumer(
+                            builder: (context, ref, child) {
+                              return OptionWidget(
+                                icon: Icon(widget.topic.visibility ? Icons.visibility_off : Icons.visibility),
+                                title: widget.topic.visibility ? 'Set private' : 'Set public',
+                                onTap: () {
+                                  TopicUseCase().editTopicVisibility(widget.topic, !widget.topic.visibility).then((value) {
+                                    ref.read(topicListProvider.notifier).refresh();
+                                    TopicModel topic = value;
+                                    context.router.replace(TopicRoute(topic: topic));
+                                  });
+                                },
+                              );
+                            },
+                          ),
+                          OptionWidget(
+                            icon: const Icon(Icons.delete),
+                            title: 'Delete topic',
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) => DeleteTopicDialog(
+                                  id: widget.topic.id.toString(),
                                 ),
-                                Consumer(
-                                  builder: (context, ref, child) {
-                                    return OptionWidget(
-                                      icon: Icon(widget.topic.visibility ? Icons.visibility_off : Icons.visibility),
-                                      title: widget.topic.visibility ? 'Set private' : 'Set public',
-                                      onTap: () {
-                                        TopicUseCase().editTopicVisibility(widget.topic, !widget.topic.visibility).then((value) {
-                                          ref.read(topicListProvider.notifier).refresh();
-                                          TopicModel topic = value;
-                                          context.router.replace(TopicRoute(topic: topic));
-                                        });
-                                      },
-                                    );
-                                  },
-                                ),
-                                OptionWidget(
-                                  icon: const Icon(Icons.delete),
-                                  title: 'Delete topic',
-                                  onTap: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => DeleteTopicDialog(
-                                        id: widget.topic.id.toString(),
-                                      ),
-                                    );
-                                  },
-                                )
-                              ],
-                            ),
+                              );
+                            },
                           )
-                        : Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: ListView(
-                              shrinkWrap: true,
-                              children: [
-                                OptionWidget(
-                                  icon: const Icon(Icons.leaderboard),
-                                  title: 'View ranking',
-                                  onTap: () {
-                                    AutoRouter.of(context).push(RankingRoute(id: widget.topic.id.toString()));
-                                  },
-                                ),
-                                data.when(
-                                    data: (data) {
-                                      bool isTopicInUserList = data.contains(widget.topic);
-                                      return isTopicInUserList
-                                          ? OptionWidget(
-                                              icon: const Icon(Icons.delete),
-                                              title: 'Remove topic',
-                                              onTap: () {
-                                                TopicUseCase().removeUserPublicTopics(widget.topic.id.toString());
-                                                ref.read(publicTopicListProvider.notifier).refresh();
-                                              },
-                                            )
-                                          : OptionWidget(
-                                              icon: const Icon(Icons.add),
-                                              title: 'Save topic',
-                                              onTap: () {
-                                                TopicUseCase().saveTopic(widget.topic.id.toString());
-                                                ref.read(publicTopicListProvider.notifier).refresh();
-                                              },
-                                            );
-                                    },
-                                    loading: () => Container(),
-                                    error: (Object error, StackTrace stackTrace) => Container()),
-                              ],
-                            ),
-                          );
+                        ],
+                      ),
+                    );
                   },
                 );
               },
@@ -318,29 +301,24 @@ class _TopicScreenState extends ConsumerState<TopicScreen> with SingleTickerProv
                       shrinkWrap: true,
                       itemCount: widget.topic.vocabularies.length,
                       itemBuilder: (context, index) {
-                        return userEmail == widget.topic.owner
-                            ? VocabularyWidget(
-                                onPress: () {
-                                  widget.topic.vocabularies[index].star = !widget.topic.vocabularies[index].star;
-                                  TopicUseCase().editTopic(widget.topic.title, widget.topic.vocabularies, widget.topic.id.toString());
-                                  if (widget.topic.vocabularies[index].star) {
-                                    setState(() {
-                                      starVocabulary.add(widget.topic.vocabularies[index]);
-                                    });
-                                  } else {
-                                    setState(() {
-                                      starVocabulary.remove(widget.topic.vocabularies[index]);
-                                    });
-                                  }
-                                },
-                                star: widget.topic.vocabularies[index].star,
-                                term: widget.topic.vocabularies[index].term,
-                                definition: widget.topic.vocabularies[index].definition,
-                              )
-                            : VocabularyWidget3(
-                                term: widget.topic.vocabularies[index].term,
-                                definition: widget.topic.vocabularies[index].definition,
-                              );
+                        return VocabularyWidget(
+                          onPress: () {
+                            widget.topic.vocabularies[index].star = !widget.topic.vocabularies[index].star;
+                            TopicUseCase().editTopic(widget.topic.title, widget.topic.vocabularies, widget.topic.id.toString());
+                            if (widget.topic.vocabularies[index].star) {
+                              setState(() {
+                                starVocabulary.add(widget.topic.vocabularies[index]);
+                              });
+                            } else {
+                              setState(() {
+                                starVocabulary.remove(widget.topic.vocabularies[index]);
+                              });
+                            }
+                          },
+                          star: widget.topic.vocabularies[index].star,
+                          term: widget.topic.vocabularies[index].term,
+                          definition: widget.topic.vocabularies[index].definition,
+                        );
                       },
                     )
                   : ListView.builder(

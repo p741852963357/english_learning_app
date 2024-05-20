@@ -1,5 +1,5 @@
-import '../../../create/data/models/topic_model.dart';
-import '../../../create/data/models/vocabulary_model.dart';
+import '../../../../../create/data/models/topic_model.dart';
+import '../../../../../create/data/models/vocabulary_model.dart';
 
 class PublicTopicModel {
   TopicModel topic;

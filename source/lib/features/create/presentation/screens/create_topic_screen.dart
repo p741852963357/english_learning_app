@@ -2,8 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:client/features/create/data/models/vocabulary_model.dart';
 import 'package:client/features/create/domain/usecases/topic_creation_usecase.dart';
 import 'package:client/features/create/presentation/widgets/vocabulary_textfield_widget.dart';
+import 'package:client/features/create/utils/custom_file_picker.dart';
 import 'package:client/features/create/utils/topic_creation_validator.dart';
 import 'package:client/routes/app_router.gr.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -142,9 +145,44 @@ class _CreateTopicScreenState extends State<CreateTopicScreen> {
                         borderSide: BorderSide(color: AppColors.black, width: 4),
                       ),
                     ),
-                    autofocus: true,
                   ),
                 ),
+                TextButton(
+                  style: const ButtonStyle(overlayColor: MaterialStatePropertyAll(Colors.transparent)),
+                  onPressed: () async {
+                    final content = await CustomFilePicker().pickFile();
+                    if (content != null) {
+                      definitionControllers = [];
+                      termControllers = [];
+                      setState(() {
+                        titleController.clear();
+                        titleController.text = content[0][0].toString();
+                      });
+
+                      for (int i = 1; i < content.length; i++) {
+                        setState(() {
+                          termControllers.add(TextEditingController(text: content[i][0].toString()));
+
+                          definitionControllers.add(TextEditingController(text: content[i][1].toString()));
+                        });
+                      }
+                    }
+                  },
+                  child: const Row(
+                    children: [
+                      Icon(
+                        Icons.upload_rounded,
+                        color: Colors.blue,
+                      ),
+                      SizedBox(width: 5),
+                      Text(
+                        "Import csv",
+                        style: TextStyle(color: AppColors.blue, fontSize: 13),
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 10),
                 ListView.separated(
                   physics: const ScrollPhysics(),
                   shrinkWrap: true,

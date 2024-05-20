@@ -1,10 +1,11 @@
-import 'package:client/features/library/data/models/public_topic_model.dart';
-import '../../../create/data/models/topic_model.dart';
+import 'package:client/features/library/features/public_topic/data/models/public_topic_model.dart';
 
-class PublicTopicListModel {
+import '../../../../../create/data/models/topic_model.dart';
+
+class PublicTopicsModel {
   List<PublicTopicModel> topicList;
 
-  PublicTopicListModel(this.topicList);
+  PublicTopicsModel(this.topicList);
 
   int get length => topicList.length;
 
@@ -19,9 +20,9 @@ class PublicTopicListModel {
     return false;
   }
 
-  factory PublicTopicListModel.fromJson(json) {
+  factory PublicTopicsModel.fromJson(json) {
     final list = json as List;
     List<PublicTopicModel> topicList = list.map((item) => PublicTopicModel.fromJson(item)).toList();
-    return PublicTopicListModel(topicList);
+    return PublicTopicsModel(topicList);
   }
 }

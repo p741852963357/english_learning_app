@@ -4,6 +4,7 @@ import 'package:client/features/authentication/presentation/widgets/custom_text_
 import 'package:client/features/authentication/utils/validator.dart';
 import 'package:client/routes/app_router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../create/presentation/widgets/custom_bottom_app_bar.dart';
 
@@ -106,10 +107,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
           try {
             AuthenticationUseCase authenticationUseCase = AuthenticationUseCase();
             await authenticationUseCase.createUser(emailController.text.trim(), passwordController.text.trim());
-            router.pushAndPopUntil(
-              const AuthenticationRoute(),
-              predicate: (_) => false,
-            );
+            Fluttertoast.showToast(
+                msg: "Sign up successfully",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 2,
+                backgroundColor: Colors.grey,
+                textColor: Colors.white,
+                fontSize: 16.0);
+            router.replace(const LogInRoute());
           } catch (e) {
             setState(() {
               readOnly = false;

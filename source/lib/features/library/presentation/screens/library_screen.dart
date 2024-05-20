@@ -16,7 +16,11 @@ class _LibraryScreenState extends State<LibraryScreen> {
   Widget build(BuildContext context) {
     return AutoTabsRouter.tabBar(
       physics: const NeverScrollableScrollPhysics(),
-      routes: const [TopicsRoute(), FoldersRoute()],
+      routes: const [
+        TopicsRoute(),
+        PublicTopicsRoute(),
+        FoldersRoute(),
+      ],
       builder: (context, child, controller) {
         return Scaffold(
           appBar: AppBar(
@@ -39,6 +43,9 @@ class _LibraryScreenState extends State<LibraryScreen> {
               tabs: const [
                 Tab(
                   text: "Topics",
+                ),
+                Tab(
+                  text: "Public Topics",
                 ),
                 Tab(
                   text: "Folders",

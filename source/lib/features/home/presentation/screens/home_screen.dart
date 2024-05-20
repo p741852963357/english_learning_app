@@ -1,7 +1,5 @@
-// ignore_for_file: prefer_const_constructors
 import 'package:auto_route/auto_route.dart';
-import 'package:client/features/home/domain/providers/public_topics_provider.dart';
-
+import 'package:client/features/home/domain/providers/global_public_topics_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,7 +12,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final data = ref.watch(publicTopicsProvider);
+    final data = ref.watch(globalPublicTopicsProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -24,17 +22,17 @@ class HomeScreen extends ConsumerWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "Public topics",
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               data.when(
                 data: (data) {
                   return ListView.builder(
@@ -42,7 +40,7 @@ class HomeScreen extends ConsumerWidget {
                     shrinkWrap: true,
                     itemBuilder: (context, index) => GestureDetector(
                       onTap: () {
-                        AutoRouter.of(context).push(TopicRoute(topic: data.get(index)));
+                        AutoRouter.of(context).push(PublicTopicRoute(topic: data.get(index)));
                       },
                       child: TopicWidget(
                         topic: data.get(index),

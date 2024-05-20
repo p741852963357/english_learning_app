@@ -88,6 +88,7 @@ class AppRouter extends $AppRouter {
           AutoRoute(page: LibraryRoute.page, children: [
             AutoRoute(page: TopicsRoute.page),
             AutoRoute(page: FoldersRoute.page),
+            AutoRoute(page: PublicTopicsRoute.page),
           ]),
           AutoRoute(page: ProfileRoute.page),
         ]),
@@ -97,6 +98,24 @@ class AppRouter extends $AppRouter {
         AutoRoute(page: ForgotPasswordRoute.page),
         CustomRoute(
           page: TopicRoute.page,
+          transitionsBuilder: (context, animation, secondAnimation, child) {
+            const begin = Offset(1, 0);
+            const end = Offset.zero;
+            const curve = Curves.ease;
+            final tween = Tween(begin: begin, end: end);
+            final curvedAnimation = CurvedAnimation(
+              parent: animation,
+              curve: curve,
+            );
+            return SlideTransition(
+              position: tween.animate(curvedAnimation),
+              child: child,
+            );
+          },
+          durationInMilliseconds: 300,
+        ),
+        CustomRoute(
+          page: PublicTopicRoute.page,
           transitionsBuilder: (context, animation, secondAnimation, child) {
             const begin = Offset(1, 0);
             const end = Offset.zero;
