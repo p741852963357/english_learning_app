@@ -18,13 +18,16 @@ const createUser = async (req, res) => {
   await newUser.save();
   return res
     .status(201)
-    .json({ message: "User created successfully.", user: newUser });
+    .json({ message: "User created successfully.", user: newUser});
 };
 
-const getUserPublicTopics = async (req, res) => {
+const getPublicTopicsOfUser = async (req, res) => {
   let email = req.query.email;
-  let user = await User.findOne({email: email}).populate({path: 'topics', populate :{ path : 'topicId'}});
-  if(!user.topics){
+  let user = await User.findOne({ email: email }).populate({
+    path: "topics",
+    populate: { path: "topicId" },
+  });
+  if (!user.topics) {
     return res.status(200).json({
       message: "User public topics",
       data: [],
@@ -34,16 +37,15 @@ const getUserPublicTopics = async (req, res) => {
     message: "User public topics",
     data: user.topics,
   });
-}
+};
 
-
-const removeUserPublicTopics = async (req, res) => {
-  let {email, id} = req.body;
-  await UserTopic.findOneAndDelete({userEmail: email, topicId: id });
+const removePublicTopicsOfUser = async (req, res) => {
+  let { email, id } = req.body;
+  await UserTopic.findOneAndDelete({ userEmail: email, topicId: id });
   return res.status(200).json({
     message: "Removed user public topic",
   });
-}
+};
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -62,8 +64,7 @@ const loginUser = async (req, res) => {
     message: "Login successful.",
     user: user,
   });
-}
-
+};
 const generateOTP = async (req, res) => {
   const { email } = req.body;
   const user = await User.findOne({ email });
@@ -71,34 +72,27 @@ const generateOTP = async (req, res) => {
   if (!user) {
     return res.status(400).json({ message: "User not found!" });
   }
-
   const OTP = otp.generateOTP();
   user.OTP = OTP;
   user.OTPCreatedAt = new Date();
   await user.save();
-
   otp.sendOTP(email, OTP);
-
   return res.status(200).json({ message: "OTP sent successfully." });
 };
-
 const resetPassword = async (req, res) => {
   const { email, OTP, newPassword } = req.body;
-
   const user = await User.findOne({ email });
-
   if (!user || user.OTP !== OTP) {
     return res.status(400).json({ message: "Invalid OTP." });
   }
-
   const currentTime = new Date();
   const OTPExpiry = new Date(user.OTPCreatedAt);
   OTPExpiry.setMinutes(OTPExpiry.getMinutes() + 5);
-
   if (currentTime > OTPExpiry) {
-    return res.status(400).json({ message: "OTP expired. Please request a new one." });
+    return res
+      .status(400)
+      .json({ message: "OTP expired. Please request a new one." });
   }
-
   user.password = newPassword;
   user.OTP = undefined;
   user.OTPCreatedAt = undefined;
@@ -106,16 +100,31 @@ const resetPassword = async (req, res) => {
 
   return res.status(200).json({ message: "Password reset successfully." });
 };
+const changePassword = async (req, res) => {
+  const { email, currentPassword, newPassword } = req.body;
 
-const findUser = async (req, res) => {};
+  const user = await User.findOne({ email });
 
+  if (!user) {
+    return res.status(400).json({ message: "User not found!" });
+  }
+
+  if (user.password !== currentPassword) {
+    return res.status(400).json({ message: "Current password is incorrect!" });
+  }
+
+  user.password = newPassword;
+  await user.save();
+
+  return res.status(200).json({ message: "Password changed successfully." });
+};
 
 module.exports = {
   createUser,
-  getUserPublicTopics,
-  removeUserPublicTopics,
+  getPublicTopicsOfUser,
+  removePublicTopicsOfUser,
   loginUser,
   generateOTP,
   resetPassword,
-
+  changePassword
 };

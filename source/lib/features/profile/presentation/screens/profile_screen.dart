@@ -16,10 +16,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final router = AutoRouter.of(context);
     LocalStorage localStorage = LocalStorage();
 
-    // Clear user information from local storage
     await localStorage.clearUserInfo();
 
-    // Navigate back to the login screen
     router.pushAndPopUntil(
       const AuthenticationRoute(),
       predicate: (_) => false,
@@ -34,9 +32,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
         centerTitle: true,
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () => _logout(context),
-          child: const Text("Logout"),
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () => _logout(context),
+              child: const Text("Logout"),
+            ),
+            ElevatedButton(
+              onPressed: () => AutoRouter.of(context).push(const ChangePasswordRoute()),
+              child: const Text("Logout"),
+            ),
+          ],
         ),
       ),
     );

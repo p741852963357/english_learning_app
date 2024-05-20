@@ -8,14 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 @RoutePage()
-class TopicsScreen extends StatefulWidget {
+class TopicsScreen extends ConsumerStatefulWidget {
   const TopicsScreen({super.key});
 
   @override
-  State<TopicsScreen> createState() => _TopicsScreenState();
+  ConsumerState<TopicsScreen> createState() => _TopicsScreenState();
 }
 
-class _TopicsScreenState extends State<TopicsScreen> {
+class _TopicsScreenState extends ConsumerState<TopicsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

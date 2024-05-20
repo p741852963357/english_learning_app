@@ -2,13 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:client/features/library/domain/providers/flashcards_provider.dart';
 import 'package:client/routes/app_router.gr.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../../../constants/app_colors.dart';
-import '../../domain/providers/ranking_provider.dart';
 
 @RoutePage()
 class FlashcardsResultScreen extends ConsumerStatefulWidget {

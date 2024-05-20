@@ -27,7 +27,7 @@ class AuthenticationRemoteDataSource {
       return Future.error(e);
     }
   }
-  
+
   Future<UserModel> loginUser(String email, String password) async {
     try {
       const endPoint = '/api/users/login';
@@ -99,4 +99,28 @@ class AuthenticationRemoteDataSource {
     }
   }
 
+  Future<void> changePassword(String email, String currentPassword, String newPassword) async {
+    try {
+      const endPoint = '/api/users/change-password';
+      final body = jsonEncode({
+        'email': email,
+        'currentPassword': currentPassword,
+        'newPassword': newPassword,
+      });
+      final response = await http.post(
+        Uri.parse(URL + endPoint),
+        body: body,
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      final data = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+      } else {
+        throw AppException(message: data['message']);
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
 }

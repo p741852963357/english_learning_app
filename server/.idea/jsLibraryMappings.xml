@@ -2,7 +2,7 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{server/node_modules}" />
-    <file url="PROJECT" libraries="{@types/express, server/node_modules}" />
+    <file url="PROJECT" libraries="{@types/express, @types/mongoose-aggregate-paginate-v2, @types/mongoose-autopopulate, @types/mongoose-delete, @types/mongoose-promise, server/node_modules}" />
     <includedPredefinedLibrary name="HTTP Pre-Request and Response Handler" />
     <includedPredefinedLibrary name="Node.js Core" />
   </component>

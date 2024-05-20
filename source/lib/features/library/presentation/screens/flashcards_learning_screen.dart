@@ -17,8 +17,6 @@ import '../../../../constants/app_colors.dart';
 import '../../../../core/api.dart';
 import '../../../../core/app_exception.dart';
 import '../../../../routes/app_router.gr.dart';
-import '../../../create/data/models/vocabulary_model.dart';
-import '../../data/models/topic_list_model.dart';
 import '../widgets/false_widget.dart';
 import '../widgets/true_widget.dart';
 

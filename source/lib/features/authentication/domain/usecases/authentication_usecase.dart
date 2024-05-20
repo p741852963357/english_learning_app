@@ -35,4 +35,12 @@ class AuthenticationUseCase {
       return Future.error(e);
     }
   }
+
+  Future<void> changePassword(String email, String currentPassword, String newPassword) async {
+    try {
+      await authenticationRemoteDataSource.changePassword(email, currentPassword, newPassword);
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
 }

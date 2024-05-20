@@ -57,7 +57,6 @@ class RankingScreen extends StatelessWidget {
                 if (snapshot.hasError) {
                   return Text('Error: ${snapshot.error}');
                 } else {
-                  print(snapshot.data['ranking']);
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -83,7 +82,7 @@ class RankingScreen extends StatelessWidget {
                           );
                         },
                         separatorBuilder: (BuildContext context, int index) {
-                          return Divider();
+                          return const Divider();
                         },
                         itemCount: 5,
                       )

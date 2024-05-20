@@ -1,10 +1,8 @@
 
 const Topic = require("../models/Topic");
 const UserTopic = require("../models/UserTopic");
-
 const mongoose = require("mongoose");
 const  User = require("../models/User");
-const express = require("express");
 
 const createTopic = async (req, res) => {
   let { title, vocabularies, owner } = req.body;

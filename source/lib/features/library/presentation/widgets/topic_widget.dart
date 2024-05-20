@@ -27,7 +27,7 @@ class _TopicWidgetState extends State<TopicWidget> {
       surfaceTintColor: Colors.white,
       color: Colors.white,
       child: ListTile(
-        contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+        contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
         title: Text(
           widget.topic.title,
           style: const TextStyle(
@@ -46,7 +46,7 @@ class _TopicWidgetState extends State<TopicWidget> {
                 fontSize: 13,
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               widget.topic.owner,
               style: const TextStyle(
